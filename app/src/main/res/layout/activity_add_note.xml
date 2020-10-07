@@ -7,4 +7,34 @@
         android:layout_height="match_parent"
         tools:context=".AddNote">
 
+    <androidx.appcompat.widget.Toolbar
+            android:layout_height="?actionBarSize"
+            android:layout_width="match_parent"
+            android:id="@+id/toolbar" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/noteTitle"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent" android:hint="Enter Note Title"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:inputType="textMultiLine"
+            android:gravity="start|top"
+            android:ems="10"
+            android:id="@+id/noteDetails"
+            app:layout_constraintTop_toBottomOf="@+id/noteTitle"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="16dp"
+            android:hint="Enter note details here..." app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp" android:background="@null"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,14 @@
 package com.AndrewsApps.notes;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class NoteDatabase extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "notesdb";
     public static final String DATABASE_TABLE = "notestable";
 
@@ -40,6 +42,21 @@ public class NoteDatabase extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
         onCreate(db);
+    }
+
+    public long addNote(Note note){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues c = new ContentValues();
+
+        c.put(KEY_TITLE, note.getTitle());
+        c.put(KEY_CONTENT, note.getContent());
+        c.put(KEY_DATE, note.getDate());
+        c.put(KEY_TIME, note.getTime());
+
+        long ID = db.insert(DATABASE_TABLE, null, c);
+        Log.d("Inserted", "ID -> " + ID);
+
+        return ID;
     }
 
 }
