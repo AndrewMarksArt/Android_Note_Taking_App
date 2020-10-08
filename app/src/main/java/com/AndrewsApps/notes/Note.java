@@ -8,10 +8,10 @@ public class Note {
     private String time;
 
     Note() {}
-    Note(String title, String content, String data, String time) {
+    Note(String title, String content, String date, String time) {
         this.title = title;
         this.content = content;
-        this.date = data;
+        this.date = date;
         this.time = time;
     }
     Note(long id, String title, String content, String data, String time) {

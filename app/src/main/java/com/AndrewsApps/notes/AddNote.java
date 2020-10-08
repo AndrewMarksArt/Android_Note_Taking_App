@@ -59,7 +59,7 @@ public class AddNote extends AppCompatActivity {
 
         // get current date and time
         c = Calendar.getInstance();
-        todaysDate = c.get(Calendar.YEAR)+"/"+(c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.DAY_OF_MONTH);
+        todaysDate = c.get(c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.DAY_OF_MONTH)+"/"+(Calendar.YEAR);
         currentTime = pad(c.get(Calendar.HOUR))+"/"+pad(c.get(Calendar.MINUTE));
     }
 
@@ -78,18 +78,24 @@ public class AddNote extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.delet) {
+            Toast.makeText(this, "Note note saved", Toast.LENGTH_SHORT).show();
+            onBackPressed();
+        }
         if (item.getItemId() == R.id.save) {
             Note note = new Note(noteTitle.getText().toString(), noteDetails.getText().toString(), todaysDate, currentTime);
             NoteDatabase db = new NoteDatabase(this);
             db.addNote(note);
             Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
-            onBackPressed();
+            goToMain();
         }
-        if (item.getItemId() == R.id.delet) {
-            Toast.makeText(this, "Note note saved", Toast.LENGTH_SHORT).show();
-            onBackPressed();
-        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private void goToMain(){
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 
     @Override

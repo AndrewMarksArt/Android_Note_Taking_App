@@ -8,11 +8,16 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView recyclerView;
+    Adapter adapter;
+    List<Note> notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +27,12 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        NoteDatabase db = new NoteDatabase(this);
+        notes = db.getNotes();
         recyclerView = findViewById(R.id.listOfNotes);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new Adapter(this,notes);
+        recyclerView.setAdapter(adapter);
 
     }
 
